@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+} from '@angular/forms';
 import { QuizService } from '../services/quiz.service';
 
 @Component({
@@ -12,8 +17,12 @@ export class QuizComponent implements OnInit {
 
   constructor(private quizService: QuizService, private fb: FormBuilder) {
     this.quizForm = this.fb.group({
-      questions: this.fb.array([]), 
+      questions: this.fb.array([]),
     });
+  }
+
+  ngOnInit(): void {
+    this.getQuiz();
   }
 
   get questions(): FormArray {
@@ -23,7 +32,7 @@ export class QuizComponent implements OnInit {
   createAnswer(answer: any): FormGroup {
     return this.fb.group({
       answerText: [answer.answerText || ''],
-      selected: [answer.selected || false], // This is to track selection state
+      selected: [answer.selected || false],
     });
   }
 
@@ -35,12 +44,12 @@ export class QuizComponent implements OnInit {
   onAnswerSelect(questionIndex: number, answerIndex: number) {
     const questionFormGroup = this.questions.at(questionIndex);
     const answersArray = questionFormGroup.get('answers') as FormArray;
-    
+
     // Reset all answers to false first
     answersArray.controls.forEach((answerControl) => {
       answerControl.get('selected')?.setValue(false);
     });
-    
+
     // Set selected to true for the clicked answer
     const selectedAnswer = answersArray.at(answerIndex);
     selectedAnswer.get('selected')?.setValue(true);
@@ -60,18 +69,16 @@ export class QuizComponent implements OnInit {
     const questionsArray = quiz.map((question: any) =>
       this.createQuestion(question)
     );
-    this.questions.clear(); 
-    questionsArray.forEach((questionGroup: any) => this.questions.push(questionGroup));
-  }
-
-  ngOnInit(): void {
-    this.getQuiz();
+    this.questions.clear();
+    questionsArray.forEach((questionGroup: any) =>
+      this.questions.push(questionGroup)
+    );
   }
 
   getQuiz() {
     this.quizService.getQuiz().subscribe((res: any) => {
       console.log(res);
-      this.loadQuiz(res[0].questions); 
+      this.loadQuiz(res[0].questions);
     });
   }
 
