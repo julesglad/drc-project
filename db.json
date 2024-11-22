@@ -1,0 +1,72 @@
+{
+  "quiz": [
+    {
+      "questions": [
+        {
+          "questionText": "What is the capital of France?",
+          "answers": [
+            {
+              "answerText": "Berlin",
+              "selected": true
+            },
+            {
+              "answerText": "Madrid",
+              "selected": false
+            },
+            {
+              "answerText": "Paris",
+              "selected": false
+            },
+            {
+              "answerText": "Rome",
+              "selected": false
+            }
+          ]
+        },
+        {
+          "questionText": "What is 2 + 2?",
+          "answers": [
+            {
+              "answerText": "3",
+              "selected": false
+            },
+            {
+              "answerText": "4",
+              "selected": true
+            },
+            {
+              "answerText": "5",
+              "selected": false
+            },
+            {
+              "answerText": "6",
+              "selected": false
+            }
+          ]
+        },
+        {
+          "questionText": "What is the color of the sky?",
+          "answers": [
+            {
+              "answerText": "Blue",
+              "selected": false
+            },
+            {
+              "answerText": "Green",
+              "selected": true
+            },
+            {
+              "answerText": "Red",
+              "selected": false
+            },
+            {
+              "answerText": "Yellow",
+              "selected": false
+            }
+          ]
+        }
+      ],
+      "id": "1"
+    }
+  ]
+}
